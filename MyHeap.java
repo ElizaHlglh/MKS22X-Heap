@@ -1,26 +1,40 @@
 public class MyHeap{
   //We discussed these 2 methods already:
   private static void pushDown(int[]data,int size,int index){
-    while (index*2 <= size-1) { //while it has at least branches/leaves
-      if (index*2 + 1 <= size-1){ //if there are two branches/leaves
-        int left = data[index * 2];
-        int right = data[index*2 + 1];
-        if (right - left >= 0){ //if right is == or greater than left
-          if (right - data[index] > 0){ // if the right child is greater than parent
+    while (index*2+1 <= size-1) { //while it has at least branches/leaves
+      int left = data[index * 2 + 1];
+      if (index*2 + 2 <= size-1){ //if there are two branches/leaves
+        int right = data[index*2 + 2];
+        if (data[index] > left && data[index] > right){
+          return;
+        }
+        if (right >= left){ //if right is == or greater than left
+          if (right > data[index]){ // if the right child is greater than parent
             if (right == left){ //switch left with the parent when the childrens are equal
-              data[index*2] = data[index];
+              data[index*2+1] = data[index];
               data[index] = left;
-              index = index*2;
+              index = index*2+1;
             }
             else{ // switch with right child
-              data[index*2+1] = data[index];
+              data[index*2+2] = data[index];
               data[index] = right;
-              index = index*2+1;
+              index = index*2+2;
             }
           }
         }
         else{//if left is greater than right
-          return;
+          if (left - data[index] > 0){ // if the lrft child is greater than parent
+            data[index*2+1] = data[index];
+            data[index] = left;
+            index = index*2+1;
+          }
+        }
+      }
+      else{
+        if (left - data[index] > 0){
+          data[index*2+1] = data[index];
+          data[index] = left;
+          index = index*2+1;
         }
       }
     }
