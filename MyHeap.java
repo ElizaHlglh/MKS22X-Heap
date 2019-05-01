@@ -1,11 +1,12 @@
 public class MyHeap{
   //We discussed these 2 methods already:
-  private static void pushDown(int[]data,int size,int index){
+  public static void pushDown(int[]data,int size,int index){
     while (index*2+1 <= size-1) { //while it has at least branches/leaves
+      System.out.println("index = " + index);
       int left = data[index * 2 + 1];
       if (index*2 + 2 <= size-1){ //if there are two branches/leaves
         int right = data[index*2 + 2];
-        if (data[index] > left && data[index] > right){
+        if (data[index] > left && data[index] > right){//check if greater to see if there is a need to continue
           return;
         }
         if (right >= left){ //if right is == or greater than left
@@ -30,8 +31,8 @@ public class MyHeap{
           }
         }
       }
-      else{
-        if (left - data[index] > 0){
+      else{//if there is only left child
+        if (left - data[index] > 0){//replace parent with left if left is greater
           data[index*2+1] = data[index];
           data[index] = left;
           index = index*2+1;
@@ -45,7 +46,9 @@ public class MyHeap{
      - precondition: size is between 0 and data.length-1 inclusive.*/
 
 private static void pushUp(int[]data,int index){
-
+  while ((index-1)/2 >= 0){
+    
+  }
 }
      /*- push the element at index i up into the correct position. This will swap it with the parent node until the parent node is larger or the root is reached. [ should be O(logn) ]
      - precondition: index is between 0 and data.length-1 inclusive.*/
