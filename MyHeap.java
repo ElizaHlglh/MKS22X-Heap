@@ -137,12 +137,14 @@ public static int countSize(int[] data){
 public static void heapsort(int[] data){
   int[] ans = new int[data.length];
   int size = countSize(data);
-  for (int i = 0; i < size; i++){
-    heapy(data, size);
+  int original = size;
+  heapy(data, size);
+  for (int i = 0; i < original; i++){
     int largest = data[0];
     data[0] = data[size-1];
     data[size-1] = largest;
     size--;
+    heapy(data, size);
     ans[i] = largest;
   }
   data = ans;
