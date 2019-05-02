@@ -137,17 +137,35 @@ public static int countSize(int[] data){
 public static void heapsort(int[] data){
   int[] ans = new int[data.length];
   int size = countSize(data);
-  int original = size;
   heapy(data, size);
-  for (int i = 0; i < original; i++){
+  for (int i = size -1; i >= 0; i--){
     int largest = data[0];
-    data[0] = data[size-1];
-    data[size-1] = largest;
-    size--;
-    heapy(data, size);
-    ans[i] = largest;
+    data[0] = data[i];
+    data[i] = largest;
+    /*System.out.println("data after for loop");
+    for (int k = 0; k < data.length; k++){
+      System.out.print(data[k] + ", ");
+    }*/
+    heapy(data, i);
   }
-  data = ans;
+  /*System.out.println("data after for loop");
+  for (int i = 0; i < data.length; i++){
+    System.out.print(data[i] + ", ");
+  }*/
+
+/*  for (int z = size - 1; z >= 0; z--){
+    ans[size-z-1] = data[z];
+  }*/
+
+  /*for (int i = 0; i < data.length; i++){
+    data[i] = ans[i];
+  }*/
+
+  /*System.out.println("ans after for loop");
+  for (int i = 0; i < ans.length; i++){
+    System.out.print(ans[i] + ", ");
+  }
+  System.out.println();*/
 }
     /*- sort the array [ should be O(nlogn) ] :
      converting it into a heap

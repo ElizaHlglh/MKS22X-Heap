@@ -36,10 +36,22 @@
     HeapPrinter.print(list);
     System.out.println();
 
-    System.out.println("testing fi null+ '' == null  " +  ((null+"").equals("null")) );
+
+    int[] test2 = {40,50,63,17,22,68,89,97,89};
+    for (int i = 0; i < test2.length; i++){
+      System.out.print(test2[i] + ", ");
+    }
+    System.out.println();
+    System.out.println();
+    System.out.println("After sorting");
+    MyHeap.heapsort(test2);
+    for (int i = 0; i < test2.length; i++){
+      System.out.print(test2[i] + ", ");
+    }
+    System.out.println();
   }
-}
-*/
+}*/
+
 
 import java.util.Arrays;
 public class driver{
