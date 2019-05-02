@@ -117,11 +117,11 @@ public static void heapify(int[] data){
 
   public static void heapy(int[] data, int size){
     for (int i = size-1; i >= 0; i--){
-      heapyHelp(data,size, i);
+      heapyHelp(data,size);
     }
   }
 
-  public static void heapyHelp(int[]data, int size, int index){
+  public static void heapyHelp(int[]data, int size){
     //assumed that the bottom is legal
     for (int i = size-1; i >= 0; i--){
       pushDown2(data, size, i);
@@ -144,7 +144,7 @@ public static int countSize(int[] data){
 public static void heapsort(int[] data){
   int[] ans = new int[data.length];
   int size = countSize(data);
-  heapy(data, size);
+  heapyHelp(data, size);
   for (int i = size -1; i >= 0; i--){
     int largest = data[0];
     data[0] = data[i];
@@ -153,7 +153,7 @@ public static void heapsort(int[] data){
     for (int k = 0; k < data.length; k++){
       System.out.print(data[k] + ", ");
     }*/
-    heapy(data, i);
+    pushDown2(data, i, 0);
   }
   /*System.out.println("data after for loop");
   for (int i = 0; i < data.length; i++){
