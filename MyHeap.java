@@ -109,11 +109,17 @@ public static void pushUp(int[]data,int index){
 public static void heapify(int[] data){
   int size = countSize(data);
   for (int i = size-1; i >= 0; i--){
-    //helper(data,size,i);
     heapifyHelp(data,size, i);
   }
 }
+
   /*  - convert the array into a valid heap. [ should be O(n) ]*/
+
+  public static void heapy(int[] data, int size){
+    for (int i = size-1; i >= 0; i--){
+      heapifyHelp(data,size, i);
+    }
+  }
 
 public static int countSize(int[] data){
   int ans = 0;
@@ -129,7 +135,17 @@ public static int countSize(int[] data){
 }
 
 public static void heapsort(int[] data){
-  
+  int[] ans = new int[data.length];
+  int size = countSize(data);
+  for (int i = 0; i < size; i++){
+    heapy(data, size);
+    int largest = data[0];
+    data[0] = data[size-1];
+    data[size-1] = largest;
+    size--;
+    ans[i] = largest;
+  }
+  data = ans;
 }
     /*- sort the array [ should be O(nlogn) ] :
      converting it into a heap
