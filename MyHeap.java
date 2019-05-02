@@ -117,7 +117,14 @@ public static void heapify(int[] data){
 
   public static void heapy(int[] data, int size){
     for (int i = size-1; i >= 0; i--){
-      heapifyHelp(data,size, i);
+      heapyHelp(data,size, i);
+    }
+  }
+
+  public static void heapyHelp(int[]data, int size, int index){
+    //assumed that the bottom is legal
+    for (int i = size-1; i >= 0; i--){
+      pushDown2(data, size, i);
     }
   }
 
@@ -171,4 +178,56 @@ public static void heapsort(int[] data){
      converting it into a heap
      removing the largest value n-1 times (remove places at end of the sub-array). */
 
+
+     public static void pushDown2(int[]data,int size,int index){
+       int left = index*2+1;
+       int right = index*2+2;
+       if (right < size && left < size){ //if there are two children
+         if (data[right] > data[left]){
+           if (data[right] > data[index]){
+             int greater = data[right];
+             data[right] = data[index];
+             data[index] = greater;
+             index = right;
+             pushDown2(data, size, index);
+           }
+         }
+         else{//when left is >= right
+           if (data[left] > data[index]){
+             int greater = data[left];
+             data[left] = data[index];
+             data[index] = greater;
+             index = left;
+             pushDown2(data, size, index);
+           }
+         }
+       }
+       else if (left < size){
+         if (data[left] > data[index]){
+           int greater = data[left];
+           data[left] = data[index];
+           data[index] = greater;
+           index = left;
+           pushDown2(data, size, index);
+         }
+       }
+     }
+
+     public static void heapify2(int[] data, int size){
+       //int size = countSize(data);
+       for (int i = size - 1; i >= 0; i--){
+         pushDown2(data, size, i);
+       }
+     }
+
+     public static void heapsort2(int[] data){
+       int size = countSize(data);
+       heapify2(data, size);
+       for (int i = size - 1; i >= 0; i--){
+         int largest = data[0];
+         data[0] = data[i];
+         data[i] = largest;
+         pushDown2(data, i, 0);
+       }
+     }
 }

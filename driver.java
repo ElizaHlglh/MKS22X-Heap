@@ -9,7 +9,7 @@
     System.out.println("Before");
     HeapPrinter.print(list);
     System.out.println("After pushing down at 0");
-    MyHeap.pushDown(list,size,0);
+    MyHeap.pushDown2(list,size,0);
     HeapPrinter.print(list);
     System.out.println();
 
@@ -32,19 +32,19 @@
     System.out.println("Before");
     HeapPrinter.print(list);
     System.out.println("After heapify");
-    MyHeap.heapify(list);
+    MyHeap.heapify2(list,size);
     HeapPrinter.print(list);
     System.out.println();
 
-
+    System.out.println("Before sorting: ");
     int[] test2 = {40,50,63,17,22,68,89,97,89};
     for (int i = 0; i < test2.length; i++){
       System.out.print(test2[i] + ", ");
     }
     System.out.println();
     System.out.println();
-    System.out.println("After sorting");
-    MyHeap.heapsort(test2);
+    System.out.println("After sorting2");
+    MyHeap.heapsort2(test2);
     for (int i = 0; i < test2.length; i++){
       System.out.print(test2[i] + ", ");
     }
@@ -72,7 +72,7 @@ public class driver{
         }
         long t1,t2;
         t1 = System.currentTimeMillis();
-        MyHeap.heapsort(data2);
+        MyHeap.heapsort2(data2);
         t2 = System.currentTimeMillis();
         qtime += t2 - t1;
         t1 = System.currentTimeMillis();
