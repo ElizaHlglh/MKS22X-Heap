@@ -2,7 +2,7 @@ public class MyHeap{
   //We discussed these 2 methods already:
   public static void pushDown(int[]data,int size,int index){
     while (index*2+1 <= size-1) { //while it has at least branches/leaves
-      System.out.println("index = " + index);
+      //System.out.println("index = " + index);
       int left = data[index * 2 + 1];
       if (index*2 + 2 <= size-1){ //if there are two branches/leaves
         int right = data[index*2 + 2];
@@ -64,15 +64,72 @@ public static void pushUp(int[]data,int index){
      /*- push the element at index i up into the correct position. This will swap it with the parent node until the parent node is larger or the root is reached. [ should be O(logn) ]
      - precondition: index is between 0 and data.length-1 inclusive.*/
 
+     public static void heapifyHelp(int[]data, int size, int index){
+       //assumed that the bottom is legal
+       int parent = index;
+       int leftC = 0;
+       int rightC = 0;
+       if (index*2 + 1 < size){
+         leftC = index*2+1;
+       }
+       if (index*2 + 2 < size){
+         rightC = index*2+2;
+       }
+       if (leftC != 0 && rightC != 0){ //if have both children
+         if (data[leftC] >= data[rightC]){ // if left is greater than right
+           if (data[leftC] > data[parent]){
+             parent = leftC;
+           }
+         }
+         else{
+           if (data[rightC] > data[parent]){
+             parent = rightC;
+           }
+         }
+       }
+       else if (leftC != 0){//if there is a left child
+         if (data[leftC] > data[parent]){
+           parent = leftC;
+         }
+       }
+       if (parent != index){//there is a child with larger value
+         //parent is the location for the largest value right now
+         int larger = data[parent];
+         data[parent] = data[index];
+         data[index] = larger;
+         //after swaping the larger child with the parent, int parent is now the location for the switched parent
+         //use recursion to check the value underneath the newly switched off parent.
+         heapifyHelp(data, size, parent);
+       }
+       //if the parent stay the same, no change needed.
+     }
+
 
 //We will discuss this today:
 public static void heapify(int[] data){
-
+  int size = countSize(data);
+  for (int i = size-1; i >= 0; i--){
+    //helper(data,size,i);
+    heapifyHelp(data,size, i);
+  }
 }
   /*  - convert the array into a valid heap. [ should be O(n) ]*/
 
-public static void heapsort(int[] data){
+public static int countSize(int[] data){
+  int ans = 0;
+  for (int i = 0; i < data.length; i++){
+    if (!(data[i]+"").equals("null")){ //if this spot isn't empty
+      ans++;
+    }
+    else{
+      return ans;
+    }
+  }
+  return ans;
+}
 
+public static void heapsort(int[] data){
+  
 }
     /*- sort the array [ should be O(nlogn) ] :
      converting it into a heap
