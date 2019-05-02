@@ -1,36 +1,26 @@
 public class driver{
   public static void main(String[] args){
-    int[] list = new int[10];
-    //sample 10,15,2
-    list[0] = 10;
-    list[1] = 2;
-    list[2] = 15;
-    list[3] = 1;
-    list[4] = 0;
-    list[5] = 11;
-    list[6] = 13;
     int size = 7;
+    int[] list = new int[size];
+    //sample 10,15,2
+    for (int i = 0; i < size; i++){
+      list[i] = i;
+    }
     System.out.println("Before");
-    for (int i = 0; i < list.length; i++){
-      if (i < size){
-        System.out.print(list[i] + ", ");
-      }
-      else{
-        System.out.print("null, ");
-      }
-    }
-    System.out.println();
-    System.out.println("After");
+    HeapPrinter.print(list);
+    System.out.println("After pushing down at 0");
     MyHeap.pushDown(list,size,0);
-    for (int i = 0; i < list.length; i++){
-      if (i < size){
-        System.out.print(list[i] + ", ");
-      }
-      else{
-        System.out.print("null, ");
-      }
-    }
+    HeapPrinter.print(list);
     System.out.println();
-    System.out.println(-1/2);
+
+    for (int i = 0; i < size; i++){
+      list[i] = i;
+    }
+    System.out.println("Before");
+    HeapPrinter.print(list);
+    System.out.println("After pushing up at 6");
+    MyHeap.pushUp(list,4);
+    HeapPrinter.print(list);
+    System.out.println();
   }
 }
